@@ -1,4 +1,7 @@
 package com.example.atletikstaevne_backend.repository;
 
-public interface DisciplineRepo {
+import com.example.atletikstaevne_backend.entity.Discipline;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DisciplineRepo extends JpaRepository<Discipline, Integer> {
 }

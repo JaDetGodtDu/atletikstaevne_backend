@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,4 +29,11 @@ public class Contestant {
 
     @Column(name = "sex")
     private String sex;
+
+    @ManyToMany
+    @JoinTable(
+            name = "contestant_discipline",
+            joinColumns = @JoinColumn(name = "contestant_id"),
+            inverseJoinColumns = @JoinColumn(name = "discipline_id"))
+    private List<Discipline> disciplines;
 }
