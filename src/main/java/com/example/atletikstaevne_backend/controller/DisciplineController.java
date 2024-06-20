@@ -49,12 +49,13 @@ public class DisciplineController {
 
     //Updates an already existing discipline - Calls the updateDiscipline method from the DisciplineService class
     @PutMapping("/{id}")
-    public ResponseEntity updateDiscipline(@PathVariable int id, @RequestBody Discipline discipline){
+    public ResponseEntity<Discipline> updateDiscipline(@PathVariable int id, @RequestBody Discipline discipline){
         try{
-            return new ResponseEntity<>(disciplineService.updateDiscipline(id, discipline), HttpStatus.OK);
+            Discipline updatedDiscipline = disciplineService.updateDiscipline(id, discipline);
+            return new ResponseEntity<>(updatedDiscipline, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
