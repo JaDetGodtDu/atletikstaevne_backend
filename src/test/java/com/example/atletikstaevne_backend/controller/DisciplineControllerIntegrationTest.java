@@ -20,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -94,10 +95,13 @@ public class DisciplineControllerIntegrationTest {
 
         given(disciplineService.addDiscipline(any(Discipline.class))).willReturn(discipline);
 
-        mockMvc.perform(get("/discipline")
+        mockMvc.perform(post("/discipline")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(discipline)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("100-meterløb"))
+                .andExpect(jsonPath("$.resultType").value("Tid"));
     }
 
     @Test
