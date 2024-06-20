@@ -1,5 +1,6 @@
 package com.example.atletikstaevne_backend.service;
 
+import  org.apache.commons.lang3.tuple.Pair ;
 import com.example.atletikstaevne_backend.entity.Discipline;
 import com.example.atletikstaevne_backend.entity.Result;
 import com.example.atletikstaevne_backend.entity.Contestant;
@@ -31,8 +32,9 @@ public class ResultService {
     }
 
     public Result addResult(Result result) {
-        Contestant contestant = checkContestantAndDiscipline(result);
-        Discipline discipline = result.getDiscipline();
+        Pair<Contestant, Discipline> pair = checkContestantAndDiscipline(result);
+        Contestant contestant = pair.getLeft();
+        Discipline discipline = pair.getRight();
 
         result.setContestant(contestant);
         result.setDiscipline(discipline);
@@ -40,7 +42,7 @@ public class ResultService {
         return resultRepo.save(result);
     }
 
-    private Contestant checkContestantAndDiscipline(Result result) {
+    private Pair<Contestant, Discipline> checkContestantAndDiscipline(Result result) {
         Contestant contestant = contestantRepo.findById(result.getContestant().getId())
                 .orElseThrow(() -> new IllegalArgumentException("Contestant not found"));
         Discipline discipline = disciplineRepo.findById(result.getDiscipline().getId())
@@ -50,7 +52,7 @@ public class ResultService {
             throw new IllegalArgumentException("Contestant does not participate in this discipline");
         }
 
-        return contestant;
+        return Pair.of(contestant, discipline);
     }
 
     public Result updateResult(int id, Result result) {
