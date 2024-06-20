@@ -42,13 +42,13 @@ public class DisciplineControllerIntegrationTest {
     public void getAllDisciplines() throws Exception {
         Discipline discipline1 = new Discipline();
         discipline1.setId(1);
-        discipline1.setName("100m Sprint");
-        discipline1.setResultType("Time");
+        discipline1.setName("100-meterløb");
+        discipline1.setResultType("Tid");
 
         Discipline discipline2 = new Discipline();
         discipline2.setId(2);
-        discipline2.setName("Long Jump");
-        discipline2.setResultType("Distance");
+        discipline2.setName("Diskoskast");
+        discipline2.setResultType("Afstand");
 
         given(disciplineService.getAllDisciplines()).willReturn(Arrays.asList(discipline1, discipline2));
 
@@ -57,11 +57,59 @@ public class DisciplineControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].name").value("100m Sprint"))
-                .andExpect(jsonPath("$[0].resultType").value("Time"))
+                .andExpect(jsonPath("$[0].name").value("100-meterløb"))
+                .andExpect(jsonPath("$[0].resultType").value("Tid"))
                 .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].name").value("Long Jump"))
-                .andExpect(jsonPath("$[1].resultType").value("Distance"));
+                .andExpect(jsonPath("$[1].name").value("Diskoskast"))
+                .andExpect(jsonPath("$[1].resultType").value("Afstand"));
 
     }
+    @Test
+    public void getDisciplineById() throws Exception {
+        Discipline discipline = new Discipline();
+        discipline.setId(1);
+        discipline.setName("100-meterløb");
+        discipline.setResultType("Tid");
+
+        given(disciplineService.getDisciplineById(1)).willReturn(discipline);
+
+        mockMvc.perform(get("/discipline/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("100-meterløb"))
+                .andExpect(jsonPath("$.resultType").value("Tid"));
+    }
+    @Test
+    public void addDiscipline() throws Exception {
+        Discipline discipline = new Discipline();
+        
+        discipline.setId(1);
+        discipline.setName("100-meterløb");
+        discipline.setResultType("Tid");
+
+        given(disciplineService.addDiscipline(discipline)).willReturn(discipline);
+
+        mockMvc.perform(get("/discipline")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("100-meterløb"))
+                .andExpect(jsonPath("$.resultType").value("Tid"));
+    }
+    @Test
+    public void addDisciplineToContestant() throws Exception {
+        Discipline discipline = new Discipline();
+        
+        discipline.setId(1);
+        discipline.setName("100-meterløb");
+        discipline.setResultType("Tid");
+
+        Contestant contestant = new Contestant();
+
+        contestant.setId(1);
+        contestant.setName("John Dådyr");
+        contestant.setAge(25);
+        contestant.setClub("Klub A");
+        contestant.setSex("M");
 }

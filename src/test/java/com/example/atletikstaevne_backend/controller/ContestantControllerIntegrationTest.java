@@ -51,22 +51,23 @@ public class ContestantControllerIntegrationTest {
         Contestant contestant = new Contestant();
 
         contestant.setId(1);
-        contestant.setName("John Doe");
+        contestant.setName("John Dådyr");
         contestant.setAge(25);
-        contestant.setClub("Athletics Club");
-        contestant.setSex("Male");
+        contestant.setClub("Klub A");
+        contestant.setSex("M");
 
         Discipline discipline1 = new Discipline();
         discipline1.setId(1);
-        discipline1.setName("100m Sprint");
-        discipline1.setResultType("Time");
+        discipline1.setName("100-meterløb");
+        discipline1.setResultType("Tid");
 
         Discipline discipline2 = new Discipline();
         discipline2.setId(2);
-        discipline2.setName("Long Jump");
-        discipline2.setResultType("Distance");
+        discipline2.setName("Diskoskast");
+        discipline2.setResultType("Afstand");
 
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
+
         contestant.setDisciplines(disciplines);
 
         List<Contestant> allContestants = Arrays.asList(contestant);
@@ -83,20 +84,20 @@ public class ContestantControllerIntegrationTest {
         Contestant contestant = new Contestant();
 
         contestant.setId(1);
-        contestant.setName("John Doe");
+        contestant.setName("John Dådyr");
         contestant.setAge(25);
-        contestant.setClub("Athletics Club");
-        contestant.setSex("Male");
+        contestant.setClub("Klub A");
+        contestant.setSex("M");
 
         Discipline discipline1 = new Discipline();
         discipline1.setId(1);
-        discipline1.setName("100m Sprint");
-        discipline1.setResultType("Time");
+        discipline1.setName("100-meterløb");
+        discipline1.setResultType("Tid");
 
         Discipline discipline2 = new Discipline();
         discipline2.setId(2);
-        discipline2.setName("Long Jump");
-        discipline2.setResultType("Distance");
+        discipline2.setName("Diskoskast");
+        discipline2.setResultType("Afstand");
 
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
@@ -115,20 +116,20 @@ public class ContestantControllerIntegrationTest {
         Contestant contestant = new Contestant();
 
         contestant.setId(1);
-        contestant.setName("John Doe");
+        contestant.setName("John Dådyr");
         contestant.setAge(25);
-        contestant.setClub("Athletics Club");
-        contestant.setSex("Male");
+        contestant.setClub("Klub A");
+        contestant.setSex("M");
 
         Discipline discipline1 = new Discipline();
         discipline1.setId(1);
-        discipline1.setName("100m Sprint");
-        discipline1.setResultType("Time");
+        discipline1.setName("100-meterløb");
+        discipline1.setResultType("Tid");
 
         Discipline discipline2 = new Discipline();
         discipline2.setId(2);
-        discipline2.setName("Long Jump");
-        discipline2.setResultType("Distance");
+        discipline2.setName("Diskoskast");
+        discipline2.setResultType("Afstand");
 
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
@@ -147,20 +148,20 @@ public class ContestantControllerIntegrationTest {
         Contestant contestant = new Contestant();
 
         contestant.setId(1);
-        contestant.setName("John Doe");
+        contestant.setName("John Dådyr");
         contestant.setAge(25);
-        contestant.setClub("Athletics Club");
-        contestant.setSex("Male");
+        contestant.setClub("Klub A");
+        contestant.setSex("M");
 
         Discipline discipline1 = new Discipline();
         discipline1.setId(1);
-        discipline1.setName("100m Sprint");
-        discipline1.setResultType("Time");
+        discipline1.setName("100-meterløb");
+        discipline1.setResultType("Tid");
 
         Discipline discipline2 = new Discipline();
         discipline2.setId(2);
-        discipline2.setName("Long Jump");
-        discipline2.setResultType("Distance");
+        discipline2.setName("Diskoskast");
+        discipline2.setResultType("Afstand");
 
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
