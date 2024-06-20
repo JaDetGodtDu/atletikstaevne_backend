@@ -57,6 +57,12 @@ public class ContestantService {
             existingContestant.setClub(contestant.getClub());
             existingContestant.setSex(contestant.getSex());
 
+            List<Discipline> updatedDisciplines = disciplineRepo.findAllById(
+                    contestant.getDisciplines().stream().map(Discipline::getId).toList() //Get ID for each discipline in the list
+            );
+
+            existingContestant.setDisciplines(updatedDisciplines);
+
             return contestantRepo.save(existingContestant);
         } else {
             throw new RuntimeException("Error while updating contestant with id: " + id);
