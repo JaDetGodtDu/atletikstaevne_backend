@@ -2,7 +2,6 @@ package com.example.atletikstaevne_backend.controller;
 
 import com.example.atletikstaevne_backend.entity.Contestant;
 import com.example.atletikstaevne_backend.entity.Discipline;
-import com.example.atletikstaevne_backend.service.ContestantService;
 import com.example.atletikstaevne_backend.service.DisciplineService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -15,13 +14,15 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+//import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -119,5 +120,31 @@ public class DisciplineControllerIntegrationTest {
         contestant.setAge(25);
         contestant.setClub("Klub A");
         contestant.setSex("M");
+    }
+    @Test
+    public void updateDiscipline() throws Exception {
+        Discipline discipline = new Discipline();
+
+        discipline.setId(1);
+        discipline.setName("100-meterløb");
+        discipline.setResultType("Tid");
+
+        given(disciplineService.updateDiscipline(1, discipline)).willReturn(discipline);
+
+        mockMvc.perform(put("/discipline/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(discipline)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("100-meterløb"))
+                .andExpect(jsonPath("$.resultType").value("Tid"));
+    }
+    @Test
+    public void deleteDiscipline() throws Exception {
+        doNothing().when(disciplineService).deleteDiscipline(1);
+
+        mockMvc.perform(delete("/discipline/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
