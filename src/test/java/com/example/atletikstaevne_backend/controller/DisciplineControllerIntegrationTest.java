@@ -4,6 +4,7 @@ import com.example.atletikstaevne_backend.entity.Contestant;
 import com.example.atletikstaevne_backend.entity.Discipline;
 import com.example.atletikstaevne_backend.service.ContestantService;
 import com.example.atletikstaevne_backend.service.DisciplineService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -53,7 +55,7 @@ public class DisciplineControllerIntegrationTest {
         given(disciplineService.getAllDisciplines()).willReturn(Arrays.asList(discipline1, discipline2));
 
         mockMvc.perform(get("/discipline")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id").value(1))
@@ -64,6 +66,7 @@ public class DisciplineControllerIntegrationTest {
                 .andExpect(jsonPath("$[1].resultType").value("Afstand"));
 
     }
+
     @Test
     public void getDisciplineById() throws Exception {
         Discipline discipline = new Discipline();
@@ -74,33 +77,33 @@ public class DisciplineControllerIntegrationTest {
         given(disciplineService.getDisciplineById(1)).willReturn(discipline);
 
         mockMvc.perform(get("/discipline/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("100-meterløb"))
                 .andExpect(jsonPath("$.resultType").value("Tid"));
     }
+
     @Test
     public void addDiscipline() throws Exception {
         Discipline discipline = new Discipline();
-        
+
         discipline.setId(1);
         discipline.setName("100-meterløb");
         discipline.setResultType("Tid");
 
-        given(disciplineService.addDiscipline(discipline)).willReturn(discipline);
+        given(disciplineService.addDiscipline(any(Discipline.class))).willReturn(discipline);
 
         mockMvc.perform(get("/discipline")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("100-meterløb"))
-                .andExpect(jsonPath("$.resultType").value("Tid"));
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(discipline)))
+                .andExpect(status().isCreated());
     }
+
     @Test
     public void addDisciplineToContestant() throws Exception {
         Discipline discipline = new Discipline();
-        
+
         discipline.setId(1);
         discipline.setName("100-meterløb");
         discipline.setResultType("Tid");
@@ -112,4 +115,5 @@ public class DisciplineControllerIntegrationTest {
         contestant.setAge(25);
         contestant.setClub("Klub A");
         contestant.setSex("M");
+    }
 }

@@ -102,8 +102,6 @@ public class ContestantControllerIntegrationTest {
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
 
-        List<Contestant> allContestants = Arrays.asList(contestant);
-
         given(contestantService.getContestantById(1)).willReturn(contestant);
 
         mockMvc.perform(get("/contestant/1")
@@ -134,8 +132,6 @@ public class ContestantControllerIntegrationTest {
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
 
-        List<Contestant> allContestants = Arrays.asList(contestant);
-
         given(contestantService.addContestant(any(Contestant.class))).willReturn(contestant);
 
         mockMvc.perform(post("/contestant")
@@ -165,8 +161,6 @@ public class ContestantControllerIntegrationTest {
 
         List<Discipline> disciplines = Arrays.asList(discipline1, discipline2);
         contestant.setDisciplines(disciplines);
-
-        List<Contestant> allContestants = Arrays.asList(contestant);
 
         given(contestantService.updateContestant(eq(1), any(Contestant.class))).willReturn(contestant);
 
