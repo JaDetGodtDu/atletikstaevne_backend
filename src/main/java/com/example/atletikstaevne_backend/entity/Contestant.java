@@ -34,6 +34,7 @@ public class Contestant {
     @JoinTable(
             name = "contestant_discipline",
             joinColumns = @JoinColumn(name = "contestant_id"),
-            inverseJoinColumns = @JoinColumn(name = "discipline_id"))
+            inverseJoinColumns = @JoinColumn(name = "discipline_id")
+    )
     private List<Discipline> disciplines;
 }

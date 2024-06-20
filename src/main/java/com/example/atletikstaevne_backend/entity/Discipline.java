@@ -21,4 +21,6 @@ public class Discipline {
 
     @Column(name = "result_type")
     private String resultType;
+
+
 }

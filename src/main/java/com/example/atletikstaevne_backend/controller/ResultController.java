@@ -44,6 +44,7 @@ public class ResultController {
         try{
             return new ResponseEntity<>(resultService.addResult(result), HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

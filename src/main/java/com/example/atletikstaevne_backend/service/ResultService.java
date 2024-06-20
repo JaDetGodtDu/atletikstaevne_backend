@@ -1,6 +1,10 @@
 package com.example.atletikstaevne_backend.service;
 
+import com.example.atletikstaevne_backend.entity.Discipline;
 import com.example.atletikstaevne_backend.entity.Result;
+import com.example.atletikstaevne_backend.entity.Contestant;
+import com.example.atletikstaevne_backend.repository.ContestantRepo;
+import com.example.atletikstaevne_backend.repository.DisciplineRepo;
 import com.example.atletikstaevne_backend.repository.ResultRepo;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +13,13 @@ import java.util.List;
 @Service
 public class ResultService {
     final ResultRepo resultRepo;
+    final ContestantRepo contestantRepo;
+    final DisciplineRepo disciplineRepo;
 
-    public ResultService(ResultRepo resultRepo) {
+    public ResultService(ResultRepo resultRepo, ContestantRepo contestantRepo, DisciplineRepo disciplineRepo) {
         this.resultRepo = resultRepo;
+        this.contestantRepo = contestantRepo;
+        this.disciplineRepo = disciplineRepo;
     }
 
     public List<Result> getAllResults() {
@@ -23,7 +31,26 @@ public class ResultService {
     }
 
     public Result addResult(Result result) {
+        Contestant contestant = checkContestantAndDiscipline(result);
+        Discipline discipline = result.getDiscipline();
+
+        result.setContestant(contestant);
+        result.setDiscipline(discipline);
+
         return resultRepo.save(result);
+    }
+
+    private Contestant checkContestantAndDiscipline(Result result) {
+        Contestant contestant = contestantRepo.findById(result.getContestant().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Contestant not found"));
+        Discipline discipline = disciplineRepo.findById(result.getDiscipline().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Discipline not found"));
+
+        if (contestant.getDisciplines() == null || !contestant.getDisciplines().contains(discipline)) {
+            throw new IllegalArgumentException("Contestant does not participate in this discipline");
+        }
+
+        return contestant;
     }
 
     public Result updateResult(int id, Result result) {
