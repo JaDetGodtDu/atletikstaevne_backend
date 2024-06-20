@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.doNothing;
@@ -129,7 +130,7 @@ public class DisciplineControllerIntegrationTest {
         discipline.setName("100-meterløb");
         discipline.setResultType("Tid");
 
-        given(disciplineService.updateDiscipline(1, discipline)).willReturn(discipline);
+        given(disciplineService.updateDiscipline(eq(1), any(Discipline.class))).willReturn(discipline);
 
         mockMvc.perform(put("/discipline/1")
                         .contentType(MediaType.APPLICATION_JSON)
