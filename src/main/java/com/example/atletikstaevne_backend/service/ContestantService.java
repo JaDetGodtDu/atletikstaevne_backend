@@ -1,20 +1,25 @@
 package com.example.atletikstaevne_backend.service;
 
+import com.example.atletikstaevne_backend.entity.Discipline;
 import com.example.atletikstaevne_backend.repository.ContestantRepo;
 import com.example.atletikstaevne_backend.entity.Contestant;
 
+import com.example.atletikstaevne_backend.repository.DisciplineRepo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ContestantService {
     final ContestantRepo contestantRepo;
+    final DisciplineRepo disciplineRepo;
 
-    public ContestantService(ContestantRepo contestantRepo){
+    public ContestantService(ContestantRepo contestantRepo, DisciplineRepo disciplineRepo){
         this.contestantRepo = contestantRepo;
+        this.disciplineRepo = disciplineRepo;
     }
 
     //Gets all contestants
@@ -29,6 +34,16 @@ public class ContestantService {
 
     //Adds / Creates a new contestant
     public Contestant addContestant(Contestant contestant){
+        List<Discipline> fetchedDisciplines = new ArrayList<>();
+
+        for (Discipline discipline : contestant.getDisciplines()) {
+            Discipline fetchedDiscipline = disciplineRepo.findById(discipline.getId())
+                    .orElseThrow(()->new RuntimeException("Discipline with id: " + discipline.getId() + " not found"));
+
+            fetchedDisciplines.add(fetchedDiscipline);
+        }
+
+        contestant.setDisciplines(fetchedDisciplines);
         return contestantRepo.save(contestant);
     }
 
@@ -36,7 +51,7 @@ public class ContestantService {
     public Contestant updateContestant(int id, Contestant contestant){
         Contestant existingContestant = contestantRepo.findById(id).orElseThrow(()->new RuntimeException("Contestant not found"));
 
-        if(contestant.getId()==id){
+        if(existingContestant.getId()==id){
             existingContestant.setName(contestant.getName());
             existingContestant.setAge(contestant.getAge());
             existingContestant.setClub(contestant.getClub());

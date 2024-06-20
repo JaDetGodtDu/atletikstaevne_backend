@@ -58,7 +58,7 @@ public class ResultService {
     public Result updateResult(int id, Result result) {
         Result existingResult = resultRepo.findById(id).orElseThrow(() -> new RuntimeException("Result not found"));
 
-        if (result.getId() == id) {
+        if (existingResult.getId() == id) {
             existingResult.setDate(result.getDate());
             existingResult.setResultValue(result.getResultValue());
             existingResult.setContestant(result.getContestant());
