@@ -19,27 +19,43 @@ INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (1, 1);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (1, 2);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (2, 1);
 
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 1); -- Sarah Brown - 100-meterløb
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 3); -- Sarah Brown - Boksning
--- Example 2: Single discipline
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (4, 2); -- Michael White - Diskoskast
--- Example 3: Multiple disciplines
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 1); -- Emily Davis - 100-meterløb
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 2); -- Emily Davis - Diskoskast
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 3); -- Emily Davis - Boksning
--- Example 4: Single discipline
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (6, 3); -- David Wilson - Boksning
--- Example 5: Single discipline
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (7, 1); -- Olivia Martinez - 100-meterløb
--- Example 6: Multiple disciplines
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (8, 2); -- James Anderson - Diskoskast
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (8, 3); -- James Anderson - Boksning
--- Example 7: Single discipline
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (9, 1); -- Sophia Garcia - 100-meterløb
--- Example 8: Multiple disciplines
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 1); -- Daniel Taylor - 100-meterløb
-INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 2); -- Daniel Taylor - Diskoskast
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (4, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (5, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (6, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (7, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (8, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (8, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (9, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 2);
 
-INSERT INTO result (date, result_value, contestant_id, discipline_id) VALUES (CURDATE(), '00:06:00:00', 1, 1);
-INSERT INTO result (date, result_value, contestant_id, discipline_id) VALUES (CURDATE(), '100', 1, 2);
-INSERT INTO result (date, result_value, contestant_id, discipline_id) VALUES (CURDATE(), '00:10:00:00', 2, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:06:00:00', 1, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '100', 1, 2);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:10:00:00', 2, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:12:00:00', 9, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:11:00:00', 10, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '120', 10, 2);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:09:30:00', 5, 1);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '300', 5, 3);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '110', 4, 2);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '250', 6, 3);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '130', 8, 2);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '320', 8, 3);
+INSERT INTO result (date, result_value, contestant_id, discipline_id)
+VALUES (CURDATE(), '00:11:45:00', 7, 1);
