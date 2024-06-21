@@ -18,7 +18,6 @@ public class ResultController {
         this.resultService = resultService;
     }
 
-    //Gets all results - Calls the getAllResults method from the ResultService class
     @GetMapping
     public ResponseEntity<List<Result>> getAllResults(){
         try{
@@ -28,7 +27,6 @@ public class ResultController {
         }
     }
 
-    //Gets a single result, by ID - Calls the getResultById method from the ResultService class
     @GetMapping("/{id}")
     public ResponseEntity<Result> getResultById(@PathVariable int id){
         try{
@@ -38,7 +36,6 @@ public class ResultController {
         }
     }
 
-    // Adds / Creates a new result - Calls the addResult method from the ResultService class
     @PostMapping
     public ResponseEntity<Result> addResult(@RequestBody Result result){
         try{
@@ -49,7 +46,6 @@ public class ResultController {
         }
     }
 
-    // Updates an already existing result - Calls the updateResult method from the ResultService class
     @PutMapping("/{id}")
     public ResponseEntity updateResult(@PathVariable int id, @RequestBody Result result){
         try{
@@ -60,7 +56,6 @@ public class ResultController {
         }
     }
 
-    // Deletes a result - Calls the deleteResult method from the ResultService class
     @DeleteMapping("/{id}")
     public ResponseEntity deleteResult(@PathVariable int id){
         try{
@@ -71,7 +66,6 @@ public class ResultController {
         }
     }
 
-    //Gets all results from a certain discipline - Calls the getResultsByDiscipline method from the ResultService class
     @GetMapping("/discipline/{id}")
     public ResponseEntity<List<Result>> getResultsByDiscipline(@PathVariable int id){
         try{
@@ -81,7 +75,6 @@ public class ResultController {
         }
     }
 
-    // Gets all results from a certain contestant - Calls the getResultsByContestant method from the ResultService class
     @GetMapping("/contestant/{id}")
     public ResponseEntity<List<Result>> getResultsByContestant(@PathVariable int id){
         try{

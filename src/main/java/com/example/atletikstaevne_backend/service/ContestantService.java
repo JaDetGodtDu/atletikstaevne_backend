@@ -22,17 +22,14 @@ public class ContestantService {
         this.disciplineRepo = disciplineRepo;
     }
 
-    //Gets all contestants
     public List<Contestant> getAllContestants(){
         return contestantRepo.findAll();
     }
 
-    //Gets a single contestant, by ID
     public Contestant getContestantById(int id){
         return contestantRepo.findById(id).orElse(null);
     }
 
-    //Adds / Creates a new contestant
     public Contestant addContestant(Contestant contestant){
         List<Discipline> fetchedDisciplines = new ArrayList<>();
 
@@ -47,7 +44,6 @@ public class ContestantService {
         return contestantRepo.save(contestant);
     }
 
-    //Updates an already existing contestant
     public Contestant updateContestant(int id, Contestant contestant){
         Contestant existingContestant = contestantRepo.findById(id).orElseThrow(()->new RuntimeException("Contestant not found"));
 
@@ -69,7 +65,6 @@ public class ContestantService {
         }
     }
 
-    //Deletes a contestant
     public ResponseEntity<String> deleteContestant(int id){
         Optional<Contestant> contestantToDelete = contestantRepo.findById(id);
         if(contestantToDelete.isPresent()){

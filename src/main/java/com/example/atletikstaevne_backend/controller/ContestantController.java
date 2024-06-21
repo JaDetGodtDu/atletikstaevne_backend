@@ -18,7 +18,6 @@ public class ContestantController {
         this.contestantService = contestantService;
     }
 
-    //Gets all contestants - Calls the getAllContestants method from the ContestantService class
     @GetMapping
     public ResponseEntity<List<Contestant>> getAllContestants(){
         try{
@@ -28,7 +27,6 @@ public class ContestantController {
         }
     }
 
-    //Gets a single contestant, by ID - Calls the getContestantById method from the ContestantService class
     @GetMapping("/{id}")
     public ResponseEntity<Contestant> getContestantById(@PathVariable int id){
         try{
@@ -38,7 +36,6 @@ public class ContestantController {
         }
     }
 
-    //Adds / Creates a new contestant - Calls the addContestant method from the ContestantService class
     @PostMapping
     public ResponseEntity<Contestant> addContestant(@RequestBody Contestant contestant){
         try{
@@ -48,7 +45,6 @@ public class ContestantController {
         }
     }
 
-    //Updates an already existing contestant - Calls the updateContestant method from the ContestantService class
     // NOTE: Might need to look at ResponseEntity return type
     @PutMapping("/{id}")
     public ResponseEntity updateContestant(@PathVariable int id, @RequestBody Contestant contestant){
@@ -60,7 +56,6 @@ public class ContestantController {
         }
     }
 
-    //Deletes a contestant - Calls the deleteContestant method from the ContestantService class
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteContestant(@PathVariable int id){
         try{

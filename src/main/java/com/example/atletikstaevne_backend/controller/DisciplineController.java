@@ -17,7 +17,6 @@ public class DisciplineController {
         this.disciplineService = disciplineService;
     }
 
-    //Gets all disciplines - Calls the getAllDisciplines method from the DisciplineService class
     @GetMapping
     public ResponseEntity<List<Discipline>> getAllDisciplines(){
         try{
@@ -27,7 +26,6 @@ public class DisciplineController {
         }
     }
 
-    //Gets a single discipline, by ID - Calls the getDisciplineById method from
     @GetMapping("/{id}")
     public ResponseEntity<Discipline> getDisciplineById(@PathVariable int id){
         try{
@@ -37,7 +35,6 @@ public class DisciplineController {
         }
     }
 
-    //Adds / Creates a new discipline - Calls the addDiscipline method from the DisciplineService class
     @PostMapping
     public ResponseEntity<Discipline> addDiscipline(@RequestBody Discipline discipline){
         try{
@@ -47,7 +44,6 @@ public class DisciplineController {
         }
     }
 
-    //Updates an already existing discipline - Calls the updateDiscipline method from the DisciplineService class
     @PutMapping("/{id}")
     public ResponseEntity<Discipline> updateDiscipline(@PathVariable int id, @RequestBody Discipline discipline){
         try{
@@ -59,7 +55,6 @@ public class DisciplineController {
         }
     }
 
-    //Deletes a discipline - Calls the deleteDiscipline method from the DisciplineService class
     @DeleteMapping("/{id}")
     public ResponseEntity deleteDiscipline(@PathVariable int id){
         try{
