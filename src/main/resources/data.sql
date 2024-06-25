@@ -28,7 +28,6 @@ INSERT INTO discipline (name, result_type) VALUES ('Boksning', 'Points');
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (1, 1);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (1, 2);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (2, 1);
-
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 1);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (3, 3);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (4, 2);
@@ -42,6 +41,19 @@ INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (8, 3);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (9, 1);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 1);
 INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (10, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (11, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (12, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (13, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (14, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (15, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (16, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (17, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (17, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (18, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (19, 2);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (19, 3);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (20, 1);
+INSERT INTO contestant_discipline (contestant_id, discipline_id) VALUES (20, 2);
 
 INSERT INTO result (date, result_value, contestant_id, discipline_id)
 VALUES (CURDATE(), '00:06:00:00', 1, 1);
