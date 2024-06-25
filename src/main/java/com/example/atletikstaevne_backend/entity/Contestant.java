@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class Contestant {
     private String name;
 
     @Column(name = "age")
-    private int age;
+    private LocalDate age;
 
     @Column(name = "club")
     private String club;
